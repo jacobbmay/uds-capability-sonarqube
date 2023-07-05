@@ -18,9 +18,9 @@ components:
       onDeploy:
         before:
           - cmd: cat values-sonarqube.yaml
-            description: Read gitlab values into variable.
+            description: Read sonarqube values into variable.
             setVariables:
-            - name: GITLAB_RUNNER_VALUES
+            - name: SONARQUBE_VALUES
               autoIndent: true
     charts:
       - name: flux-app
