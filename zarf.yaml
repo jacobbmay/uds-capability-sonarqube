@@ -7,12 +7,29 @@ metadata:
   architecture: amd64
 
 components:
+  - name: sonarqube-values
+    files:
+      - source: values-sonarqube.yaml
+        target: values-sonarqube.yaml
   - name: sonarqube
     required: true
-    description: "Deploy sonarqube"
-    import:
-      url: oci://ghcr.io/defenseunicorns/zarf-skeleton/flux-app:0.0.1-skeleton
-      name: flux-app
+    description: "Deploy sonarqube via flux"
+    actions:
+      onDeploy:
+        before:
+          - cmd: cat values-sonarqube.yaml
+            description: Read gitlab values into variable.
+            setVariables:
+            - name: GITLAB_RUNNER_VALUES
+              autoIndent: true
+    charts:
+      - name: flux-app
+        version: 1.0.0
+        url: https://github.com/defenseunicorns/flux-app-helm-chart.git
+        gitPath: charts
+        namespace: bigbang
+        valuesFiles:
+          - sonarqube-flux-values.yaml
     images:
     - "registry1.dso.mil/ironbank/big-bang/base:2.0.0"
     - "registry1.dso.mil/ironbank/big-bang/sonarqube-9:9.9.0-community"
