@@ -6,6 +6,12 @@ metadata:
   version: "0.0.1"
   architecture: amd64
 
+variables:
+  - name: SONARQUBE_DEPENDS_ON
+    default: "[]"
+  - name: SONARQUBE_CREATE_NAMESPACE
+    default: "true"
+
 components:
   - name: sonarqube-values
     files:
@@ -19,14 +25,15 @@ components:
         before:
           - cmd: cat values-sonarqube.yaml
             description: Read sonarqube values into variable.
+            mute: true
             setVariables:
             - name: SONARQUBE_VALUES
               autoIndent: true
+              sensitive: true
     charts:
       - name: flux-app
-        version: 1.0.0
-        url: https://github.com/defenseunicorns/flux-app-helm-chart.git
-        gitPath: charts
+        version: 1.0.3
+        url: https://defenseunicorns.github.io/uds-support-charts/
         namespace: bigbang
         valuesFiles:
           - sonarqube-flux-values.yaml
