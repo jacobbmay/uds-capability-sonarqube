@@ -39,5 +39,5 @@ components:
           - sonarqube-flux-values.yaml
     images:
     - "registry1.dso.mil/ironbank/big-bang/base:2.0.0"
-    - "registry1.dso.mil/ironbank/big-bang/sonarqube-9:9.9.0-community"
-    - "registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.14"
+    - "registry1.dso.mil/ironbank/big-bang/sonarqube-9:9.9.1-community"
+    - "registry1.dso.mil/ironbank/opensource/postgres/postgresql12:12.15"

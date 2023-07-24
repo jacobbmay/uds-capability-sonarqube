@@ -5,7 +5,7 @@ application:
   path: chart
   repository: https://repo1.dso.mil/big-bang/product/packages/sonarqube.git
   ref:
-    tag: 8.0.0-bb.1
+    tag: 8.0.1-bb.2
   values: |
     ###ZARF_VAR_SONARQUBE_VALUES###
   dependsOn:
