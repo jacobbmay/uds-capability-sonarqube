@@ -27,7 +27,7 @@ jobs:
       - name: Install zarf
         uses: supplypike/setup-bin@v3
         with:
-          uri: 'https://github.com/defenseunicorns/zarf/releases/download/v0.28.0/zarf_v0.28.2_Linux_amd64'
+          uri: 'https://github.com/defenseunicorns/zarf/releases/download/v0.28.2/zarf_v0.28.2_Linux_amd64'
           name: 'zarf'
           version: 'v0.28.2'
 
@@ -45,11 +45,11 @@ jobs:
           username: ${{ secrets.REGISTRY1_USERNAME }}
           password: ${{ secrets.REGISTRY1_PASSWORD }}
 
-      - name: Build gitlab runner package
+      - name: Build sonarqube package
         run: zarf package create --confirm --no-progress
 
-      - name: Publish gitlab runner package
-        run: zarf package publish zarf-package-gitlab-runner-amd64-*.tar.zst oci://ghcr.io/defenseunicorns/uds-capability --no-progress
+      - name: Publish sonarqube package
+        run: zarf package publish zarf-package-sonarqube-amd64-*.tar.zst oci://ghcr.io/defenseunicorns/uds-capability --no-progress
 
-      - name: Publish gitlab runner skeleton
+      - name: Publish sonarqube skeleton
         run: zarf package publish . oci://ghcr.io/defenseunicorns/uds-capability
