@@ -14,6 +14,7 @@ variables:
 
 components:
   - name: sonarqube-values
+    required: true
     files:
       - source: values-sonarqube.yaml
         target: values-sonarqube.yaml
@@ -34,9 +35,11 @@ components:
       - name: flux-app
         version: 1.0.5
         url: https://defenseunicorns.github.io/uds-support-charts/
-        namespace: bigbang
+        namespace: sonarqube
         valuesFiles:
           - sonarqube-flux-values.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/sonarqube.git
     images:
     - "registry1.dso.mil/ironbank/big-bang/base:2.0.0"
     - "registry1.dso.mil/ironbank/big-bang/sonarqube-9:9.9.1-community"
